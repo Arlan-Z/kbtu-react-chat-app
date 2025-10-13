@@ -12,7 +12,79 @@
   font-style: normal;
 }
 
+:root{
+  --dark1: #0b0326;    
+  --violet-1: #2d0057;
+  --violet-2: #5b1f8a;
+  --violet-3: #8a3dbf;
+  --accent: #c68cff;   
+  --bg-speed: 18s;     
+  --light-speed: 10s;
+  --noise-opacity: 0.03;
+}
+
 * {
+  box-sizing: border-box;  
   margin: 0;
   padding: 0;
+}
+
+html,body {
+  height:100%; 
+  margin:0; 
+}
+
+body{
+  position: relative;
+  min-height: 100vh;
+  background: radial-gradient(1200px 600px at 10% 20%, rgba(138,61,191,0.18), transparent 15%),
+              radial-gradient(900px 500px at 90% 80%, rgba(91,31,138,0.12), transparent 12%),
+              linear-gradient(120deg, var(--dark1) 0%, var(--violet-1) 25%, var(--violet-2) 55%, var(--violet-3) 80%);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  overflow: hidden;
+  isolation: isolate; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+body {
+  animation: gradientShift var(--bg-speed) ease-in-out infinite;
+}
+
+body::before{
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(40% 40% at 20% 30%, rgba(198,140,255,0.12), transparent 20%),
+              radial-gradient(30% 30% at 80% 70%, rgba(150,80,255,0.08), transparent 18%);
+  filter: blur(40px) saturate(120%);
+  transform: translateZ(0);
+  pointer-events: none;
+  z-index: 0;
+  animation: lightDrift var(--light-speed) ease-in-out infinite;
+}
+
+@keyframes lightDrift {
+  0%   { transform: translate(-5%, -3%) rotate(0deg) scale(1); opacity: 1; }
+  50%  { transform: translate(6%, 4%) rotate(2deg) scale(1.02); opacity: 0.95; }
+  100% { transform: translate(-5%, -3%) rotate(0deg) scale(1); opacity: 1; }
+}
+
+body::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-size: 150% 150%;
+  opacity: var(--noise-opacity);
+  mix-blend-mode: overlay;
+  transform: translateZ(0);
 }
