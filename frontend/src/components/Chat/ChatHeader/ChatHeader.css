@@ -11,6 +11,37 @@
   z-index: 10;
 }
 
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: all 0.4s ease;
+}
+
+.search-input {
+  pointer-events: none;
+  width: 0;
+  opacity: 0;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 15px;
+  margin-right: -40px; 
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  outline: none;
+  transition: 
+    width 0.4s ease,
+    opacity 0.3s ease,
+    padding 0.3s ease;
+}
+
+.search-container.open .search-input {
+  width: 400px;
+  opacity: 1;
+  padding: 10px 50px 10px 15px;
+}
+
 .search-btn {
   width: 45px;
   height: 45px;
