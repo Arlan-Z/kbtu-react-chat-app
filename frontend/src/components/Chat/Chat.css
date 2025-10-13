@@ -1,0 +1,16 @@
+.chat-wrapper {
+  width: 900px;
+  height: 700px;
+  background: rgba(25, 0, 40, 0.6);
+  backdrop-filter: blur(12px) saturate(120%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(150, 70, 255, 0.15);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
