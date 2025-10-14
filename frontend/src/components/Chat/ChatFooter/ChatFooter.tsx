@@ -3,10 +3,11 @@ import './ChatFooter.css'
 import type Message from '../../../types/message';
 
 interface ChatFooterProps {
-    createMessageFunction: (message: Message) => void
+    createMessageFunction: (message: Message) => void,
+    currentUserId: string
 }
 
-export default function ChatFooter({ createMessageFunction }: ChatFooterProps) {
+export default function ChatFooter({ createMessageFunction, currentUserId }: ChatFooterProps) {
     const textInput = useRef<HTMLInputElement>(null);
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
@@ -21,7 +22,7 @@ export default function ChatFooter({ createMessageFunction }: ChatFooterProps) {
         if (!message) return;
 
         createMessageFunction({
-            owner: 'current',
+            senderId: currentUserId,
             content: message,
             isRead: false,
             status: 'pending',

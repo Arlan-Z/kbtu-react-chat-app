@@ -1,5 +1,5 @@
 export default interface Message {
-    owner: "current" | "other",
+    senderId: string
     content: string,
     sendDate?: Date,
     status: "pending" | "send" | "error",
