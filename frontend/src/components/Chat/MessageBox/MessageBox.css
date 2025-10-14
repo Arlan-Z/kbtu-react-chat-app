@@ -2,7 +2,6 @@
   padding: 90px 25px 90px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
   height: 100%;
   overflow-y: auto;
   border-radius: 0 0 16px 16px;
@@ -17,6 +16,15 @@
   line-height: 1.4;
   word-wrap: break-word;
   animation: appear 0.3s ease;
+}
+
+.message + .message {
+  margin-top: 12px;
+}
+
+.message.current + .message.current,
+.message.other + .message.other {
+  margin-top: 6px; 
 }
 
 .message.current {

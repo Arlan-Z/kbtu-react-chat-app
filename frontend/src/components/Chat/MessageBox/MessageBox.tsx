@@ -1,24 +1,18 @@
+import type Message from '../../../types/message';
 import './MessageBox.css';
 
-export default function MessageBox() {
+interface messageBoxProps {
+    messages: Message[]
+}
+
+export default function MessageBox({ messages = [] }: messageBoxProps) {
     return (
         <div className="message-box-wrapper">
-            <div className="message current">Hello!</div>
-            <div className="message other">Hello to you too!</div>
-            <div className="message current">How are you?</div>
-            <div className="message other">Im great, thanks! You?</div>
-                        <div className="message current">Hello!</div>
-            <div className="message other">Hello to you too!</div>
-            <div className="message current">How are you?</div>
-            <div className="message other">Im great, thanks! You?</div>
-                        <div className="message current">Hello!</div>
-            <div className="message other">Hello to you too!</div>
-            <div className="message current">How are you?</div>
-            <div className="message other">Im great, thanks! You?</div>
-                        <div className="message current">Hello!</div>
-            <div className="message other">Hello to you too!</div>
-            <div className="message current">How are you?</div>
-            <div className="message other">Im great, thanks! You?</div>
+            {messages.map((msg, index) => {
+                return (
+                    <div className={`message ${msg.owner}`} key={index}>{msg.content}</div>
+                );
+            })}
         </div>
     );
 }
