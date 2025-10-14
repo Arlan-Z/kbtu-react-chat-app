@@ -3,15 +3,17 @@ import ChatFooter from './ChatFooter/ChatFooter';
 import ChatHeader from './ChatHeader/ChatHeader';
 import MessageBox from './MessageBox/MessageBox';
 import './Chat.css';
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { io } from 'socket.io-client';
 import UserUtils from '../../utils/userUtils';
 
 const socket = io("http://localhost:5000");
-const userUtils = new UserUtils();
 
 export default function Chat() {
     const [messages, setMessages] = useState<Message[]>([]);
+    const [filteredMessages, setFilteredMessages] = useState<Message[]>([]);
+    const [searchQuery, setSearchQuery] = useState<string>('');
+    const userUtils = useRef(new UserUtils());
 
     useEffect(() => {
         socket.on("initMessages", (msgs: Message[]) => setMessages(msgs));
@@ -23,16 +25,31 @@ export default function Chat() {
         };
     }, []);
 
+    useEffect(() => {
+        if (searchQuery.trim() === "") {
+            setFilteredMessages(messages);
+        } else {
+            setFilteredMessages(
+                messages.filter(msg =>
+                    msg.content.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+            );
+        }
+    }, [messages, searchQuery]);
+
     const createMessageFunction = (message: Message) => {
         socket.emit("sendMessage", message);
-        console.log(userUtils.getUserId());
+    };
+
+    const filterMessageFunction = (filterText: string) => {
+        setSearchQuery(filterText);
     };
 
     return (
         <div className="chat-wrapper">
-            <ChatHeader/>
-            <MessageBox messages={messages} currentUserId={userUtils.getUserId()}/>
-            <ChatFooter createMessageFunction={createMessageFunction} currentUserId={userUtils.getUserId()}/>
+            <ChatHeader filterMessagesFunction={filterMessageFunction}/>
+            <MessageBox messages={filteredMessages} currentUserId={userUtils.current.getUserId()}/>
+            <ChatFooter createMessageFunction={createMessageFunction} currentUserId={userUtils.current.getUserId()}/>
         </div>
     );
 }

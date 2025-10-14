@@ -12,8 +12,8 @@ export default function ChatFooter({ createMessageFunction, currentUserId }: Cha
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
         if (e.key === 'Enter') {
-        e.preventDefault(); 
-        sendMessage();
+            e.preventDefault(); 
+            sendMessage();
         }
     };
 
