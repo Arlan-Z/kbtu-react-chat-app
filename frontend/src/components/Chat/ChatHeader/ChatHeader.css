@@ -45,6 +45,7 @@
   width: 400px;
   opacity: 1;
   padding: 10px 50px 10px 15px;
+  pointer-events: all;
 }
 
 .search-btn {
