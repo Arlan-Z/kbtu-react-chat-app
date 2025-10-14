@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import './ChatFooter.css'
 import type Message from '../../../types/message';
 
@@ -7,7 +7,14 @@ interface ChatFooterProps {
 }
 
 export default function ChatFooter({ createMessageFunction }: ChatFooterProps) {
-    const textInput = useRef<HTMLInputElement>(null)
+    const textInput = useRef<HTMLInputElement>(null);
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+        if (e.key === 'Enter') {
+        e.preventDefault(); 
+        sendMessage();
+        }
+    };
 
     const sendMessage = (): void => {
         const message = textInput.current?.value.trim();
@@ -25,7 +32,13 @@ export default function ChatFooter({ createMessageFunction }: ChatFooterProps) {
 
     return (
         <div className="chat-footer-wrapper">
-            <input className="chat-input" type="text" placeholder="Type your message..." ref={textInput}/>
+            <input 
+                className="chat-input" 
+                type="text" 
+                placeholder="Type your message..." ref={textInput}
+                onKeyDown={handleKeyDown}
+            />
+
             <button className="chat-send-btn" onClick={sendMessage}>Send</button>
         </div>
     )
