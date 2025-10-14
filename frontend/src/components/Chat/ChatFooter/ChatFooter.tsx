@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import './ChatFooter.css'
 import type Message from '../../../types/message';
 
