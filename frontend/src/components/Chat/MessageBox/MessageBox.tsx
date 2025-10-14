@@ -7,6 +7,18 @@ export default function MessageBox() {
             <div className="message other">Hello to you too!</div>
             <div className="message current">How are you?</div>
             <div className="message other">Im great, thanks! You?</div>
+                        <div className="message current">Hello!</div>
+            <div className="message other">Hello to you too!</div>
+            <div className="message current">How are you?</div>
+            <div className="message other">Im great, thanks! You?</div>
+                        <div className="message current">Hello!</div>
+            <div className="message other">Hello to you too!</div>
+            <div className="message current">How are you?</div>
+            <div className="message other">Im great, thanks! You?</div>
+                        <div className="message current">Hello!</div>
+            <div className="message other">Hello to you too!</div>
+            <div className="message current">How are you?</div>
+            <div className="message other">Im great, thanks! You?</div>
         </div>
     );
 }
