@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from "uuid"; 
-
-export default class UserUtils {
+class UserUtils {
     private userId : string;
     
     constructor() {
@@ -11,3 +10,5 @@ export default class UserUtils {
         return this.userId;
     }
 }
+
+export default new UserUtils();

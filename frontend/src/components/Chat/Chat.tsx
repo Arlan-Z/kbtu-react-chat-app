@@ -13,7 +13,7 @@ export default function Chat() {
     const [messages, setMessages] = useState<Message[]>([]);
     const [filteredMessages, setFilteredMessages] = useState<Message[]>([]);
     const [searchQuery, setSearchQuery] = useState<string>('');
-    const userUtils = useRef(new UserUtils());
+    const userUtils = useRef(UserUtils);
 
     useEffect(() => {
         socket.on("initMessages", (msgs: Message[]) => setMessages(msgs));
