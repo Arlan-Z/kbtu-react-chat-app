@@ -25,7 +25,6 @@ export default function ChatFooter({ createMessageFunction, currentUserId }: Cha
             senderId: currentUserId,
             content: message,
             isRead: false,
-            status: 'pending',
         });
 
         textInput.current!.value = '';

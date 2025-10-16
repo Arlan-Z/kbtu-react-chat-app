@@ -11,7 +11,10 @@ export default function MessageBox({ messages = [], currentUserId }: messageBoxP
         <div className="message-box-wrapper">
             {messages.map((msg, index) => {
                 return (
+                    <>
+                    <p className='msg-sender-id'>{msg.senderId}</p>
                     <div className={`message ${msg.senderId === currentUserId ? "current" : "other"}`} key={index}>{msg.content}</div>
+                    </>
                 );
             })}
         </div>
